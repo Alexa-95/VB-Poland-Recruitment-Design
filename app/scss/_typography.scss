@@ -1,0 +1,38 @@
+h1, h2, h3 {
+    font-weight: 700;
+    margin-top: 0px;
+}
+
+h1 {
+    font-size: 36px;
+
+    @media #{$mq-1000-up}{
+        font-size: 60px;
+    }
+}
+
+h2 {
+    font-size: 24px;
+
+    @media #{$mq-1000-up}{
+        font-size: 48px;
+    }
+}
+
+h3 {
+    font-size: 1.25rem;
+
+    @media #{$mq-1000-up}{
+        font-size: 1.5rem;
+    }
+}
+
+p {
+    font-size: 16px;
+    line-height: 22px;
+
+    @media #{$mq-1000-up}{
+        font-size: 18px;
+        line-height: 24px;
+    }
+}

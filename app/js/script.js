@@ -1,36 +1,60 @@
-console.log("Load script.js");
+
 
 // Instantiating the global app object
-var app = {};
+class App {
+  constructor({dir, hamburgerButton}){
+    this.dir = dir;
+    this.hamburgerButton = hamburgerButton;
+  }
 
+  //open hamburger menu, toggle class active
+  toggleClassActive(){
+    this.classList.toggle("active");
+  };
 
-//HAMBURGER MENU
-document.getElementById('hide-show_menu').addEventListener('click', function(){
-  this.classList.toggle("active");
+  //navigation url
+  getPathname = () => {
+
+    let path = this.dir.split('/').filter(e => {return e !== '' && e != 'pages'}).join('/');
+    let newPath = path.split('/').map((e) => {
+      return e = `<a href="/${e}">${e}</a>`
+    }).join(" ").split('.').slice(0, -1).join('.');
+
+    [...document.getElementsByClassName('navigation-bar')].forEach(function(e){
+      e.innerHTML = `<a href="/">HOME</a> ${newPath}`; 
+    });
+    
+  }
+
+  //change style depends on window width
+  windowSize = () => {
+    if(window.innerWidth < 760){
+      this.hamburgerButton.style.display = 'inline-flex';
+      [...document.getElementsByClassName('nav_conent-menu')].forEach(function(e){
+        e.classList.add('menu-toggle');
+      });
+    }
+    else{
+      this.hamburgerButton.style.display = 'none';
+      [...document.getElementsByClassName('nav_conent-menu')].forEach(function(e){
+        e.classList.remove('menu-toggle');
+      });
+    }
+  };
+
+  run(){
+    this.getPathname();
+    this.windowSize();
+
+    window.addEventListener("resize", this.windowSize);
+
+    document.getElementById('hide-show_menu').addEventListener('click', this.toggleClassActive);
+  }
+};
+
+const app = new App({
+  dir: window.location.pathname,
+  hamburgerButton: document.getElementById('hide-show_menu')
 });
 
-//TU DODAĆ ONLOAD
-//check window width
-let windowSize = function(){
-  if(window.innerWidth < 760){
-    document.getElementById('hide-show_menu').style.display = 'inline-flex';
-    // document.getElementsByClassName('nav_conent-menu')[0].classList.add('open');
-    [...document.getElementsByClassName('nav_conent-menu')].forEach(function(e){
-      return e.classList.add('menu-toggle');
-    });
-  }
-  else{
-    document.getElementById('hide-show_menu').style.display = 'none';
-    [...document.getElementsByClassName('nav_conent-menu')].forEach(function(e){
-      return e.classList.remove('menu-toggle');
-    });
-  }
-}
-
-//show/hide hamburger menu on resize 
-window.addEventListener("resize", windowSize());
-
-
-// if(window.location.pathname == '/'){
-// }
-  // document.getElementById("main_content").innerHTML='<object type="text/html" data="home.html" ></object>';
+app.run();

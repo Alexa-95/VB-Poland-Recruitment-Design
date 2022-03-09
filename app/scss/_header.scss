@@ -16,6 +16,7 @@
     color: $textColorLight;
     padding: 5px 10px;
     &.name_link{
+      color: $black;
       font-size: 24px;
       line-height: 28px;
     }
@@ -109,6 +110,32 @@
       background-size: 19px 25px;
       background-repeat: no-repeat;
       background-position: center;
+    }
+  }
+}
+
+body{
+  &.about{
+    #main_nav{
+      background-color: $mainAccentLight;
+    }
+  }
+  &.collection{
+    #main_nav{
+      background-color: $mainAccent;
+
+      .nav_link{
+        color: $textColorLight;
+        &.name_link{
+          color: $white;
+        }
+      }
+      .nav_conent-menu--user{    
+        > a{
+          border: 1px solid $white;
+          background-image: url('../../images/ico-user-white.svg');
+        }
+      }
     }
   }
 }

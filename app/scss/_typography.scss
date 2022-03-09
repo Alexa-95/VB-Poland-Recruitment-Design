@@ -1,38 +1,40 @@
-h1, h2, h3 {
-    font-weight: 700;
-    margin-top: 0px;
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  margin-top: 0px;
 }
 
 h1 {
-    font-size: 36px;
+  font-size: 36px;
 
-    @media #{$mq-1000-up}{
-        font-size: 60px;
-    }
+  @media #{$mq-900-up} {
+    font-size: 60px;
+  }
 }
 
 h2 {
-    font-size: 24px;
+  font-size: 24px;
 
-    @media #{$mq-1000-up}{
-        font-size: 48px;
-    }
+  @media #{$mq-900-up} {
+    font-size: 48px;
+  }
 }
 
 h3 {
-    font-size: 16px;
+  font-size: 16px;
 
-    @media #{$mq-1000-up}{
-        font-size: 18px;
-    }
+  @media #{$mq-900-up} {
+    font-size: 18px;
+  }
 }
 
 p {
-    font-size: 16px;
-    line-height: 22px;
+  font-size: 16px;
+  line-height: 22px;
 
-    @media #{$mq-1000-up}{
-        font-size: 18px;
-        line-height: 24px;
-    }
+  @media #{$mq-900-up} {
+    font-size: 18px;
+    line-height: 24px;
+  }
 }

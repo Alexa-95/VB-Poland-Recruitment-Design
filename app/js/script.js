@@ -29,3 +29,8 @@ let windowSize = function(){
 
 //show/hide hamburger menu on resize 
 window.addEventListener("resize", windowSize());
+
+
+// if(window.location.pathname == '/'){
+// }
+  // document.getElementById("main_content").innerHTML='<object type="text/html" data="home.html" ></object>';

@@ -1,0 +1,114 @@
+#main_nav{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  gap: 10vw;
+  width: 100%;
+  background-color: $white;
+  padding: 15px;
+
+  @media #{$mq-900-up}{
+    padding: 15px 25px;
+    gap: 150px;
+  }
+
+  .nav_link{
+    color: $textColorLight;
+    padding: 5px 10px;
+    &.name_link{
+      font-size: 24px;
+      line-height: 28px;
+    }
+  }
+
+  .nav_content{
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  #hide-show_menu{
+    position: relative;
+    display: inline-flex;
+    width: 32px;
+    height: 19px;
+    cursor: pointer;
+    .line{
+      position: absolute;
+      display: block;
+      background-color: $black;
+      width: 32px;
+      height: 3px;
+      transition: all 0.2s ease-in-out;
+      &:nth-child(1){
+        top: 0px;
+      }
+      &:nth-child(2){
+        top: 8px;
+      }
+      &:nth-child(3){
+        top: 16px
+      }
+    }
+    &.active{
+      .line{
+        &:nth-child(1){
+          transform: rotate(45deg);
+          top: 8px;
+        }
+        &:nth-child(2){
+          height: 0;
+        }
+        &:nth-child(3){
+          transform: rotate(-45deg);
+          top: 8px;
+        }
+      }
+      & + .nav_conent-menu{
+        &.menu-toggle{
+          display: flex;
+        }
+      }
+    }
+  }
+
+  .nav_conent-menu{
+    display: flex;
+    width: 100%;
+
+    &.menu-toggle{
+      display: none;
+      position: absolute;
+      top: calc(100% + 15px);
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 0 2px $textColorLight;
+      z-index: 9;
+
+      .nav_conent-menu--user{
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .nav_conent-menu--user{
+    padding: 5px 0;
+    margin: 0 0 0 auto;
+
+    > a{
+      display: block;
+      width: 40px;
+      height: 40px;
+      border: 1px solid $textColorLight;
+      border-radius: 20px;
+      font-size: 0;
+      background-image: url('../../images/ico-user.svg');
+      background-size: 19px 25px;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+}

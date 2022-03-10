@@ -14,16 +14,34 @@ class App {
 
   //navigation url
   getPathname = () => {
-
     let path = this.dir.split('/').filter(e => {return e !== '' && e != 'pages'}).join('/');
     let newPath = path.split('/').map((e) => {
-      return e = `<a href="/${e}">${e}</a>`
-    }).join(" ").split('.').slice(0, -1).join('.');
+      if(e.split(".html").length > 1){
+        return e = `  /  <a href="${this.dir}">${e}</a>`
+      }
+      else{
+        let link = this.dir.split(e).shift();
+        return e = `  /  <a href="${link}${e}.html">${e}</a>`
+      }
+    })
+    .join(" ").split('.').slice(0, -1).join('.')
+    ;
 
     [...document.getElementsByClassName('navigation-bar')].forEach(function(e){
       e.innerHTML = `<a href="/">HOME</a> ${newPath}`; 
-    });
-    
+    });    
+  }
+
+  //get class name by path
+  setBodyClass = () => {
+    document.body.removeAttribute("class");
+    if(this.dir == '/'){
+      document.body.classList.add('main');
+    }
+    else{
+      let path = this.dir.split("/").pop().split(".").shift();
+      document.body.classList.add(path);
+    }
   }
 
   //change style depends on window width
@@ -44,10 +62,11 @@ class App {
 
   run(){
     this.getPathname();
+    this.setBodyClass();
     this.windowSize();
 
+    //event listeners
     window.addEventListener("resize", this.windowSize);
-
     document.getElementById('hide-show_menu').addEventListener('click', this.toggleClassActive);
   }
 };

@@ -4,7 +4,7 @@
   align-items: baseline;
   gap: 10vw;
   width: 100%;
-  background-color: $white;
+  background-color: $mainAccent;
   padding: 15px;
 
   @media #{$mq-900-up}{
@@ -15,8 +15,11 @@
   .nav_link{
     color: $textColorLight;
     padding: 5px 10px;
+    &.active{
+      color: $white;
+    } 
     &.name_link{
-      color: $black;
+      color: $white;
       font-size: 24px;
       line-height: 28px;
     }
@@ -38,7 +41,7 @@
     .line{
       position: absolute;
       display: block;
-      background-color: $black;
+      background-color: $white;
       width: 32px;
       height: 3px;
       transition: all 0.2s ease-in-out;
@@ -81,11 +84,11 @@
     &.menu-toggle{
       display: none;
       position: absolute;
-      top: calc(100% + 15px);
-      left: 0;
-      right: 0;
+      top: calc(100% + 30px);
+      right: -15px;
       flex-direction: column;
       align-items: center;
+      background-color: $mainAccent;
       box-shadow: 0 0 2px $textColorLight;
       z-index: 9;
 
@@ -103,10 +106,10 @@
       display: block;
       width: 40px;
       height: 40px;
-      border: 1px solid $textColorLight;
       border-radius: 20px;
       font-size: 0;
-      background-image: url('../../images/ico-user.svg');
+      border: 1px solid $white;
+      background-image: url('../../images/ico-user-white.svg');
       background-size: 19px 25px;
       background-repeat: no-repeat;
       background-position: center;
@@ -116,24 +119,39 @@
 
 body{
   &.about{
-    #main_nav{
+    #main_nav,
+    #main_nav .nav_conent-menu.menu-toggle{
       background-color: $mainAccentLight;
     }
   }
-  &.collection{
+  &.main{
+    #main_nav,
+    #main_nav .nav_conent-menu.menu-toggle{
+      background-color: $white;
+    }
+  }
+  
+  &.about,
+  &.main{
     #main_nav{
-      background-color: $mainAccent;
-
       .nav_link{
         color: $textColorLight;
+        &.active{
+          color: $black;
+        }
         &.name_link{
-          color: $white;
+          color: $black;
+        }
+      }
+      #hide-show_menu{
+        .line{
+          background-color: $black;
         }
       }
       .nav_conent-menu--user{    
         > a{
-          border: 1px solid $white;
-          background-image: url('../../images/ico-user-white.svg');
+          border: 1px solid $textColorLight;
+          background-image: url('../../images/ico-user.svg');
         }
       }
     }

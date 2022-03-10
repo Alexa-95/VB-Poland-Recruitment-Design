@@ -2,9 +2,10 @@
 
 // Instantiating the global app object
 class App {
-  constructor({dir, hamburgerButton}){
+  constructor({dir, hamburgerButton, redirectButton}){
     this.dir = dir;
     this.hamburgerButton = hamburgerButton;
+    this.redirectButton = redirectButton;
   }
 
   //open hamburger menu, toggle class active
@@ -33,14 +34,19 @@ class App {
   }
 
   //get class name by path
-  setBodyClass = () => {
+  setBodyClass = (value) => {
     document.body.removeAttribute("class");
-    if(this.dir == '/'){
-      document.body.classList.add('main');
+    if(value){
+      document.body.classList.add(value.split('/').pop())
     }
     else{
-      let path = this.dir.split("/").pop().split(".").shift();
-      document.body.classList.add(path);
+      if(this.dir == '/'){
+        document.body.classList.add('main');
+      }
+      else{
+        let path = this.dir.split("/").pop().split(".").shift();
+        document.body.classList.add(path);
+      }
     }
   }
 
@@ -60,6 +66,28 @@ class App {
     }
   };
 
+  loadDoc = (value) => {
+    let target = value.path[0].value;
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("main_content").innerHTML =
+        this.responseText;
+      }
+    };
+    xhttp.open("GET", `/${target}.html`, true);
+    xhttp.send();
+  
+    window.history.pushState("", "", `${target.split("/").pop()}`);
+  };
+
+  ultimate = (value) => {
+    let target = value.path[0].value;
+    this.loadDoc(value);
+    this.getPathname(target);
+    this.setBodyClass(target);
+  }
+
   run(){
     this.getPathname();
     this.setBodyClass();
@@ -68,12 +96,18 @@ class App {
     //event listeners
     window.addEventListener("resize", this.windowSize);
     document.getElementById('hide-show_menu').addEventListener('click', this.toggleClassActive);
+
+    Array.from(this.redirectButton).forEach((element) => {
+      element.addEventListener('click', this.ultimate);
+    });
+
   }
 };
 
 const app = new App({
   dir: window.location.pathname,
-  hamburgerButton: document.getElementById('hide-show_menu')
+  hamburgerButton: document.getElementById('hide-show_menu'),
+  redirectButton: document.getElementsByClassName('redirectCollection')
 });
 
 app.run();

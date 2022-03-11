@@ -2,11 +2,12 @@
 
 // Instantiating the global app object
 class App {
-  constructor({dir, hamburgerButton, userButton, redirectButton}){
+  constructor({dir, hamburgerButton, userButton, redirectButton, navbar}){
     this.dir = dir;
     this.hamburgerButton = hamburgerButton;
     this.userButton = userButton;
     this.redirectButton = redirectButton;
+    this.navbar = navbar;
   }
 
   //open hamburger menu, toggle class active
@@ -29,7 +30,7 @@ class App {
     .join(" ").split('.').slice(0, -1).join('.')
     ;
 
-    [...document.getElementsByClassName('navigation-bar')].forEach(function(e){
+    [...this.navbar].forEach(function(e){
       e.innerHTML = `<a href="/">HOME</a> ${newPath}`; 
     });    
   }
@@ -86,7 +87,8 @@ const app = new App({
   dir: window.location.pathname,
   hamburgerButton: document.getElementById('hide-show_menu'),
   userButton: document.getElementsByClassName('hide-show_userpanel'),
-  redirectButton: document.getElementsByClassName('redirect')
+  redirectButton: document.getElementsByClassName('redirect'),
+  navbar: document.getElementsByClassName('navigation-bar')
 });
 
 app.run();

@@ -2,9 +2,10 @@
 
 // Instantiating the global app object
 class App {
-  constructor({dir, hamburgerButton}){
+  constructor({dir, hamburgerButton, redirectButton}){
     this.dir = dir;
     this.hamburgerButton = hamburgerButton;
+    this.redirectButton = redirectButton;
   }
 
   //open hamburger menu, toggle class active
@@ -68,12 +69,18 @@ class App {
     //event listeners
     window.addEventListener("resize", this.windowSize);
     document.getElementById('hide-show_menu').addEventListener('click', this.toggleClassActive);
+
+    Array.from(this.redirectButton).forEach((element) => {
+      element.addEventListener('click', collection);
+    });
+    window.onload = collection;
   }
 };
 
 const app = new App({
   dir: window.location.pathname,
-  hamburgerButton: document.getElementById('hide-show_menu')
+  hamburgerButton: document.getElementById('hide-show_menu'),
+  redirectButton: document.getElementsByClassName('redirect')
 });
 
 app.run();

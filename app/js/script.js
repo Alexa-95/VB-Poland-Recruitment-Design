@@ -81,13 +81,6 @@ class App {
     window.history.pushState("", "", `${target.split("/").pop()}`);
   };
 
-  ultimate = (value) => {
-    let target = value.path[0].value;
-    this.loadDoc(value);
-    this.getPathname(target);
-    this.setBodyClass(target);
-  }
-
   run(){
     this.getPathname();
     this.setBodyClass();
@@ -98,7 +91,20 @@ class App {
     document.getElementById('hide-show_menu').addEventListener('click', this.toggleClassActive);
 
     Array.from(this.redirectButton).forEach((element) => {
-      element.addEventListener('click', this.ultimate);
+      element.addEventListener('click', function(e) {
+        e.preventDefault();
+        console.log(this.pathname)
+        let target = this.pathname;
+      
+        var httpRequest = new XMLHttpRequest()
+        httpRequest.onreadystatechange = function () {
+          document.getElementById("main_content").innerHTML = this.responseText;
+          console.log(this);
+          history.pushState({foo:'bar'}, target, target);
+        }
+        httpRequest.open('GET', this.href);
+        httpRequest.send();
+      });
     });
 
   }

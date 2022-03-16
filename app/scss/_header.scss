@@ -102,7 +102,7 @@
     padding: 5px 0;
     margin: 0 0 0 auto;
 
-    > a{
+    .hide-show_userpanel{
       display: block;
       width: 40px;
       height: 40px;
@@ -113,6 +113,35 @@
       background-size: 19px 25px;
       background-repeat: no-repeat;
       background-position: center;
+
+      & +.hide-show_userpanel-box{
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        padding: 10px 25px;
+        background-color: $white;
+        box-shadow: 0 0 2px $textColorLight;
+        z-index: 9;
+
+        @media #{$mq-760-up}{
+          top: calc(100% + 15px);
+          right: -25px;
+          left: unset;
+        }
+
+        > a{
+          display: block;
+          text-align: center;
+          padding: 5px;
+        }
+      }
+    }
+    .hide-show_userpanel.active{
+      & + .hide-show_userpanel-box{
+        display: block;
+      }
     }
   }
 }
@@ -149,7 +178,7 @@ body{
         }
       }
       .nav_conent-menu--user{    
-        > a{
+        .hide-show_userpanel{
           border: 1px solid $textColorLight;
           background-image: url('../../images/ico-user.svg');
         }

@@ -16,7 +16,7 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet"> 
         
         <!-- CSS File -->
-        <link rel="stylesheet" href="dist/style.css?cb=1647009337816">
+        <link rel="stylesheet" href="dist/style.css?cb=1647463622640">
     </head>
     <body>
         <div id="root">
@@ -29,12 +29,14 @@
                         <span class="line"></span>
                     </button>
                     <div class="nav_conent-menu">
-                        <a class="nav_link redirect redirectCollection" value="about" href="/pages/about.html">About</a>
-                        <!-- <button class="nav_link redirect redirectCollection" value="pages/about">About</button> -->
-                        <a class="nav_link redirect redirectCollection" value="collection" href="/pages/collection.html">Collection</a>
-                        <!-- <button class="nav_link redirect redirectCollection" value="pages/collection">Collection</button> -->
+                        <a class="nav_link redirect" value="about" href="/pages/about.html">About</a>
+                        <a class="nav_link redirect" value="collection" href="/pages/collection.html">Collection</a>
                         <div class="nav_conent-menu--user">
-                            <a href="/">User panel</a>
+                            <button class="hide-show_userpanel">User panel</button>
+                            <div class="hide-show_userpanel-box">
+                                <a href="" disabled>Login</a>
+                                <a href="" disabled>Registration</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -46,8 +48,7 @@
                 <div class="main_content-inner">
                     <div class="main_content-inner--header">
                         <h2>Collection</h2>
-                        <!-- <a class="button-link redirect" value="collection" href="/pages/collection.html">see all</a> -->
-                        <button class="button-link redirect redirectCollection" value="pages/collection">see all</button>
+                        <a class="button-link redirect" value="collection" href="/pages/collection.html">see all</a>
                     </div>
                     <div class="main_content-collection" id="main_content-collection">
                         <!-- <div class="main_content-collection--item">
@@ -63,6 +64,6 @@
             </div>
         </div>
         <!-- JavaScript File -->
-        <script src="dist/all.js?cb=1647009337816"></script>
+        <script src="dist/all.js?cb=1647463622640"></script>
     </body>
 </html>
